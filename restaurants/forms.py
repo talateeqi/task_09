@@ -8,32 +8,22 @@ class RestaurantForm(forms.ModelForm):
         model = Restaurant
         fields = '__all__'
 
-        widgets = {
+        widget = {
         	'opening_time': forms.TimeInput(attrs={'type':'time'}),
         	'closing_time': forms.TimeInput(attrs={'type':'time'}),
         }
 
-class SignupForm(forms.Modelform):
+class SignUpForm(forms.ModelForm):
 	class Meta:
-	model = User
-	fields = ['username', 'first_name', 'last_name','email', 'password']
+		model = User
+		fields = ['username', 'first_name', 'last_name','email', 'password']
 
-	widgets={
-	'password':forms.PasswordInput(),
-	}
+		widget={'password':forms.PasswordInput()}
 
-class SigninForm(forms.form):
+class SignInForm(forms.Form):
 	username = forms.CharField(required=True)
-	password = forms.CharField(required=True, widgets=forms.PasswordInput())
+	password = forms.CharField(required=True)
+	widget = { "password" : forms.PasswordInput() }
 
-	user = authenticate(username=username, password=password)
-
-	if user is not null 
-		login(request, user)
-		return redirect('restaurant-list')
-
-	context = {
-		"forms" : form
-	}
-
-	return render(request, "signin.html", context)
+	
+	

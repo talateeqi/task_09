@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import Restaurant
 from .forms import RestaurantForm
-from django.contrib.auth import signup, signin, signout
+from restaurants.forms import RestaurantForm, SignInForm, SignUpForm
+from django.contrib.auth import login, authenticate, logout
 
-def Signup(request):
+def SignUpForm(request):
     form = signup()
     if request.method == 'POST':
         form = signup(request.POST)
@@ -19,7 +20,7 @@ def Signup(request):
     }
     return render(request, 'signup.html', context)
 
-def Signin(request):
+def SignInForm(request):
     form = signin()
     if request.method == 'POST':
         form = signin(request.POST)
@@ -34,7 +35,7 @@ def Signin(request):
     context = {"form", form}
     return render(request, "sigin.html", context)
 
-def signout(request):
+def SignOutForm(request):
     signout(request)
     return redirect("restaurant-list")
 
