@@ -8,22 +8,24 @@ class RestaurantForm(forms.ModelForm):
         model = Restaurant
         fields = '__all__'
 
-        widget = {
+        widgets = {
         	'opening_time': forms.TimeInput(attrs={'type':'time'}),
         	'closing_time': forms.TimeInput(attrs={'type':'time'}),
         }
 
-class SignUpForm(forms.ModelForm):
+class SignupForm(forms.ModelForm):
 	class Meta:
 		model = User
 		fields = ['username', 'first_name', 'last_name','email', 'password']
 
-		widget={'password':forms.PasswordInput()}
+		widgets={
+		'password':forms.PasswordInput()
+		}
 
-class SignInForm(forms.Form):
+class SigninForm(forms.Form):
 	username = forms.CharField(required=True)
-	password = forms.CharField(required=True)
-	widget = { "password" : forms.PasswordInput() }
+	password = forms.CharField(required=True, widget=forms.PasswordInput())
+	
 
 	
 	
